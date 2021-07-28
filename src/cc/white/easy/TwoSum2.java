@@ -49,4 +49,19 @@ public class TwoSum2 {
         }
         return new int[2];
     }
+
+    public static int[] ts(int[] numbers, int target) {
+        int left = 0, right = numbers.length - 1;
+        while (left < right) {
+            var temp = numbers[left] + numbers[right];
+            if (temp == target) {
+                return new int[]{left, right};
+            } else if (temp > target) {
+                right--;
+            } else {
+                left++;
+            }
+        }
+        return new int[2];
+    }
 }

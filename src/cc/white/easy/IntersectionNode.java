@@ -36,32 +36,6 @@ public class IntersectionNode {
         System.out.println(intersectionNode.val);
     }
 
-    public static ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        // FIXME
-        if (headA == null || headB == null) {
-            return null;
-        }
-        if (headA.val == headB.val) {
-            return headA;
-        }
-        ListNode temp = headA;
-        while (temp.next != null) {
-            temp = temp.next;
-        }
-        temp.next = headB;
-        // 判断链表是否有环
-        ListNode slow = temp;
-        ListNode fast = temp.next;
-        while (slow != null && fast != null && fast.next != null) {
-            if (fast.next == slow || fast == slow) {
-                return slow;
-            }
-            fast = fast.next.next;
-            slow = slow.next;
-        }
-        return null;
-    }
-
     public static class ListNode {
         int val;
         ListNode next;
@@ -70,5 +44,18 @@ public class IntersectionNode {
             val = x;
             next = null;
         }
+    }
+
+    public static ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if (headA == null || headB == null) {
+            return null;
+        }
+        ListNode t1 = headA;
+        ListNode t2 = headB;
+        while (t1 != t2) {
+            t1 = t1 == null ? headB : t1.next;
+            t2 = t2 == null ? headA : t2.next;
+        }
+        return t1;
     }
 }

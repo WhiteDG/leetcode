@@ -34,4 +34,19 @@ public class Reverse {
 //        long longVal = Long.parseLong(reverseStr);
 //        return longVal > Integer.MAX_VALUE ? 0 : Math.toIntExact(x < 0 ? -longVal : longVal);
     }
+
+    public static boolean isPalindrome(int x) {
+        if (x < 0) {
+            return false;
+        }
+        if (x < 10 && x > -10) {
+            return true;
+        }
+        int o = x;
+        long temp = 0;
+        for (; x != 0; x /= 10) {
+            temp = temp * 10 + x % 10;
+        }
+        return o == temp;
+    }
 }
